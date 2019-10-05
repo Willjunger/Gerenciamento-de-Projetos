@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <title>Edward Amaral</title>
+        <link rel="stylesheet" href="./lib/Bootstrap/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="./lib/fonts/fontawesome-free-5.10.2-web/css/all.css" />
+        <link rel="stylesheet" href="./lib/izitoast/dist/css/iziToast.css" />
+        <link rel="stylesheet" href="./lib/datatable/datatables.min.css" />
+        <link rel="stylesheet" href="./css/inicio.css" />
+    </head>
+
+    <body>
+        <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+            <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Edward Amaral</a>
+            <input class="form-control form-control-dark w-100" type="text" placeholder="Pesquisar"
+                   aria-label="Pesquisar" />
+            <ul class="navbar-nav px-3">
+                <li class="nav-item text-nowrap">
+                    <a class="nav-link sair-link" href="#">Sair</a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="container-fluid">
+            <div class="row">
+                <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+                    <div class="sidebar-sticky">
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link" id="btn-dashboard" href="#">Dashboard</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="btn-projetos" href="#">Projetos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="btn-relatorios" href="#">Relatórios</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+
+                <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+                    <!-- DIV DO DASHBOARD -->
+                    <div id="div-dashboard" class="div-dashboard">
+                        <div
+                            class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                            <h1 class="h2">Dashboard</h1>
+                            <div class="btn-toolbar mb-2 mb-md-0">
+                                <div class="btn-group mr-2">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">Compartilhar</button>
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">Exportar</button>
+                                </div>
+                                <button type="button" type="button"
+                                        class="btn btn-sm btn-outline-secondary dropdown-toggle"></button>
+                            </div>
+                        </div>
+                        <img src="./img/imagem-teste.png" alt="teste" />
+                    </div>
+
+                    <div id="div-projetos" class="div-projetos">
+                        <div
+                            class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                            <h1 class="h2">Projetos</h1>
+                            <button class="btn btn-info" id="btn-novo-projeto" data-toggle="modal"
+                                    data-target=".modal-novo-projeto"><i class="fas fa-plus"></i> Novo Projeto</button>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-hover table-striped table-dark w-100" id="table-projetos">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Codigo</th>
+                                        <th scope="col" class="text-center">Nome</th>
+                                        <th scope="col" class="text-center">Tipo</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="corpo-tabela-projetos"></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div id="div-relatorios" class="div-relatorios">
+                        <div
+                            class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                            <h1 class="h2">Relatorios</h1>
+                        </div>
+                    </div>
+                </main>
+
+                <!-- Modal grande CHECKLIST-->
+                <div class="modal modal-checklist fade " id="modal-checklist" tabindex="-1" role="dialog"
+                     aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h2>Checklist</h2>
+                            </div>
+                            <div class="modal-body modal-body-checklist">
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-striped table-dark" id="table-checklist">
+                                        <thead>
+                                            <tr class="text-center">
+                                                <th scope="col"></th>
+                                                <th scope="col" id="testado">Testado</th>
+                                                <th scope="col" id="nao-testado">Não Testado</th>
+                                                <th scope="col" id="nao-aplica">Não se Aplica</th>
+                                                <th scope="col" id="automatizado">Automatizado</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <div class="modal-footer d-flex ">
+                                    <button type="button" class="btn btn-secondary"
+                                            id="btn-cancelar-checklist">Cancelar</button>
+                                    <button type="button" class="btn btn-salvar-checklist"
+                                            id="btn-salvar-checklist">Salvar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Large modal NOVO PROJETO -->
+                <div class="modal fade modal-novo-projeto" id="modal-novo-projeto" tabindex="-1" role="dialog"
+                     aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h2>Novo Projeto</h2>
+                            </div>
+                            <div class="modal-body">
+                                <form id="limpando-novo-projeto">
+                                    <div class="d-flex">
+                                        <div class="form-group col-sm-6">
+                                            <label for="id-projeto" class="col-form-label"><b>Id do Projeto</b></label>
+                                            <input type="text" id="id-projeto" placeholder="Id" class="input-style" />
+                                        </div>
+                                        <div class="form-group col-sm-6">
+                                            <label for="nome-projeto" class="col-form-label"><b>Nome do Projeto</b></label>
+                                            <input type="text" id="nome-projeto" placeholder="Nome" class="input-style" />
+                                        </div>
+                                    </div>
+                                    <div class="d-flex">
+                                        <div class="form-group col-sm-3">
+                                            <label for="message-text" class="col-form-label"><b>Tipo de
+                                                    Projeto</b></label><br />
+                                            <label><input type="radio" name="tipo-projeto" value="Web" /> Web</label><br />
+                                            <label><input type="radio" name="tipo-projeto" value="Mobile" />
+                                                Mobile</label><br />
+                                            <label><input type="radio" name="tipo-projeto" value="Exe" /> Exe</label><br />
+                                            <label><input type="radio" name="tipo-projeto" value="Reteste" />
+                                                Reteste</label>
+                                        </div>
+                                        <div
+                                            class="form-group col-sm-9 d-flex align-items-center justify-content-around flex-wrap ">
+                                            <label><b>Data de Início</b><input type="date" id="dt-inicio"
+                                                                               class="form-control" /></label>
+                                            <!-- <label><b>Data de Conclusão</b><input type="date" class="form-control"/></label> -->
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                <button type="button" class="btn btn-salvar-novo-projeto"
+                                        id="btn-salvar-novo-projeto">Salvar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Large modal DENTRO DO PROJETO-->
+
+                <div class="modal fade modal-dentro-projeto " id="modal-dentro-projeto" tabindex="-1" role="dialog"
+                     aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header justify-content-center">
+                                <h2 id="id-nome-projeto"></h2>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="row col-sm-6">
+                                        <label class="col-sm-12 d-flex justify-content-between">Funcional<input
+                                                class="col-sm-7 input-min-w" type="text" disabled /></label>
+                                        <label class="col-sm-12 d-flex justify-content-between">Area Solicitante<input
+                                                class="col-sm-7 input-min-w" type="text" disabled /></label>
+                                        <label class="col-sm-12 d-flex justify-content-between">Nome Solicitante <input
+                                                class="col-sm-7 input-min-w" type="text" disabled /></label>
+                                        <label class="col-sm-12 d-flex justify-content-between">Numero Risco<input
+                                                class="col-sm-7 input-min-w" type="text" disabled /></label>
+                                        <label class="col-sm-12 d-flex justify-content-between">Numero URL<input
+                                                class="col-sm-7 input-min-w" type="text" disabled /></label>
+                                        <label class="col-sm-12 d-flex justify-content-between">URL<input
+                                                class="col-sm-7 input-min-w" type="text" disabled /></label>
+                                    </div>
+                                    <div class="col-sm-6 d-flex flex-column justify-content-around">
+                                        <div class="row d-flex justify-content-around">
+                                            <div class=" row col-sm-6">
+                                                <label>Data de Início</label>
+                                                <input id="input-data-inicio-projeto" class="form-control col-sm-12"
+                                                       type="date" placeholder="Data de Inicio" />
+                                            </div>
+                                            <div class=" row col-sm-6">
+                                                <label>Data de Término</label>
+                                                <input id="input-data-fim-projeto" class="form-control col-sm-12"
+                                                       type="date" placeholder="Data de Inicio" />
+                                            </div>
+                                        </div>
+                                        <div class="row d-flex justify-content-around">
+                                            <div class="row col-sm-6">
+                                                <label>Escopo</label>
+                                                <input id="escopo-projeto" class="form-control col-sm-12" type="text"
+                                                       placeholder="..." />
+                                            </div>
+                                            <div class="row col-sm-6">
+                                                <label>Hash MD5</label>
+                                                <input id="hash-projeto" class="form-control col-sm-12" type="text"
+                                                       placeholder="MD5" />
+                                            </div>
+                                        </div>
+                                        <div class="row d-flex justify-content-center">
+                                            <button class="btn btn-info col-sm-6 btn-checklist" id="btn-checklist"
+                                                    data-toggle="modal" data-target=".modal-checklist"><i
+                                                    class="fas fa-plus"></i> Checklist</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 div-vulnerabilidades">
+                                    <button type="button" class="btn btn-info btn-nova-vulnerabilidade mb-10"
+                                            data-toggle="modal" data-target=".modal-input-vulnerabilidade"
+                                            id="btn-nova-vulnerabilidade"><i class="fas fa-plus"></i> Nova
+                                        Vulnerabilidade</button>
+                                    <div class="table-responsive modal-body-vulnerabilidades">
+                                        <table class="table table-hover table-striped" id="table-vulnerabilidade">
+                                            <thead>
+                                                <tr class="text-center">
+                                                    <th scope="col">Criticidade</th>
+                                                    <th scope="col">Nome</th>
+                                                    <th scope="col">Tipo</th>
+                                                    <th scope="col">Parâmetros Afetados</th>
+                                                    <th scope="col">Ação</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                <button class="btn btn-primary">Gerar Relatórios</button>
+                                <button class="btn btn-info">Finalizar PMS</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Extra large modal AÇÕES VULNERABILIDADES NOVA/EDITAR-->
+                <div class="modal fade modal-input-vulnerabilidade" id="modal-input-vulnerabilidade" tabindex="-1"
+                     role="dialog">
+                    <div class="modal-dialog modal-xl">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h2 id="titulo-vulnerabilidade"></h2>
+                            </div>
+                            <div class="modal-body modal-body-input-vulnerabilidade" >
+                                <form id="formulario-vulnerabilidade">
+                                    <div class="row pb-2 col-sm-12">
+                                        <div class="col-sm-4 mb-3">
+                                            <label>Nome</label>
+                                            <input id="nome-vulnerabilidade" class="form-control" type="text"
+                                                   placeholder="Nome" />
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <label for="criticidade-select">Criticidade</label>
+                                            <select class="form-control" id="criticidade-select">
+                                                <option value="A">Alta</option>
+                                                <option value="M">Media</option>
+                                                <option value="B">Baixa</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <label>Número de Parametros</label>
+                                            <input class="form-control" id="n-parametros" type="text" placeholder="Nº" />
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <label>Parâmetros Afetados</label>
+                                            <input class="form-control" id="parametros-afetados" type="text"
+                                                   placeholder="Afetados" />
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <label>URL Afetadas</label>
+                                            <input class="form-control" id="url-afetada" type="text" placeholder="URL" />
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="input-group-prepend">
+                                                <span class="mb-2" id="inputGroupFileAddon01">Upload de Imagem</span>
+                                            </div>
+                                            <div class=" col-sm-12 custom-file">
+                                                <input type="file" class="custom-file-input" id="inputGroupFile01"
+                                                       aria-describedby="inputGroupFileAddon01" />
+                                                <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 mt-2 borda-top">
+                                        <textarea class="col-sm-12 no-resize " name="" id="descricao-criticidade" rows="5"
+                                                  placeholder="Descrição"></textarea>
+                                        <textarea class="col-sm-12 no-resize" name="" id="descricao-mitigacao-remediacao"
+                                                  rows="5" placeholder="Mitigação/Remediação"></textarea>
+                                        <textarea class="col-sm-12 no-resize " name="" id="descricao-referencias" rows="5"
+                                                  placeholder="Referências"></textarea>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary"
+                                        id="cancelar-vulnerabilidade">Cancelar</button>
+                                <button type="button" class="btn btn-info btn-salvar-vulnerabilidade"
+                                        onclick="salvarVulnerabilidade(this)">Salvar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <script src="./lib/jquery/jquery.3.4.1.js"></script>
+            <script src="./lib/Bootstrap/js/bootstrap.min.js"></script>
+            <script src="./lib/fonts/fontawesome-free-5.10.2-web/js/all.js"></script>
+            <script src="./lib/datatable/datatables.min.js"></script>
+            <script src="./js/DataTableConfig.js"></script>
+            <script src="./lib/izitoast/dist/js/iziToast.min.js"></script>
+            <script src="./js/Projeto_Vulnerabilidade.js"></script>
+        </div>
+    </body>
+
+</html>

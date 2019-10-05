@@ -1,0 +1,8 @@
+com\medilab\gerenciaprojeto\conexao\ConexaoBd.class
+com\medilab\gerenciaprojeto\dao\VulnerabilidadeDao.class
+com\medilab\gerenciaprojeto\modelos\CheckList.class
+com\medilab\gerenciaprojeto\modelos\Projetos.class
+com\medilab\gerenciaprojeto\modelos\Vulnerabilidade.class
+com\medilab\gerenciaprojeto\servicos\ProjetosResources.class
+com\medilab\gerenciaprojeto\servicos\VulnerabilidadeResources.class
+com\medilab\gerenciaprojeto\dao\ProjetosDao.class
