@@ -10,7 +10,7 @@ FrontEnd:
 - BOOTSTRAP 4
 - DATATABLE
 - IZITOAST
-
+- FONTAWESOME
 
 
 Feito por outros
